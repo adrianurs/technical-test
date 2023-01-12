@@ -19,7 +19,7 @@ const ButtonsContainer: FC<IProps> = (props: IProps) => {
     const fetchMovies = async (api: string) => {
         setLoading(true);
         const fetchData = await fetchURL(api) as IFetchResponse;
-        const moviesData = typeof fetchData === 'string' ? fetchData : fetchData?.Search;
+        const moviesData = typeof fetchData === 'string' ? fetchData : fetchData?.movies;
         setMovies(moviesData);
         setLoading(false);
     }

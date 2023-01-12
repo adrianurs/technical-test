@@ -16,7 +16,7 @@ const MovieCard: FC<IProps> = (props: IProps) => {
 
     return (<>
         <Card>
-            <CardMedia image={poster !== 'N/A' ? poster : placeholder} title={title} sx={{ minHeight: 350 }} />
+            <CardMedia image={!!poster ? poster : placeholder} title={title} sx={{ minHeight: 350 }} />
             <CardContent>
                 <Typography variant="h5">{title}</Typography>
                 <Typography variant="subtitle1">{type}</Typography>

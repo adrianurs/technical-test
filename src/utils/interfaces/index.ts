@@ -1,15 +1,17 @@
+export interface IPoster {
+    Poster: string
+    _id: string
+}
 export interface IMovie {
     Title: string,
     Year: string,
     imdbID: string,
     Type: string,
-    Poster: string
+    Poster?: IPoster
 }
 
 export interface IFetchResponse {
-    Search: IMovie[],
-    totalResults: string,
-    Response: "True" | "False"
+    movies: IMovie[],
 }
 
 export interface IFilter {
