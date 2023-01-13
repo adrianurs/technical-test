@@ -14,7 +14,7 @@ mongoose
         useUnifiedTopology: true
     } as ConnectOptions)
     .then(() => {
-        console.log('Connected to MongoDB');
+        console.log('Connected to MongoDB, Fabric backend server started');
     })
     .catch((error: Error) => {
         console.log(error);
