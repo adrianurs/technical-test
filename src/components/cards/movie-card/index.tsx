@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { FC } from "react";
 import placeholder from '../../../assets/images/film-poster-placeholder.png';
+import { useStyles } from "./index.styles";
 
 interface IProps {
     poster: string
@@ -13,10 +14,11 @@ interface IProps {
 const MovieCard: FC<IProps> = (props: IProps) => {
 
     const { poster, title, type, year, id } = props;
+    const styles = useStyles();
 
     return (<>
         <Card>
-            <CardMedia image={!!poster ? poster : placeholder} title={title} sx={{ minHeight: 350 }} />
+            <CardMedia image={!!poster ? poster : placeholder} title={title} className={styles.posterStyle} />
             <CardContent>
                 <Typography variant="h5">{title}</Typography>
                 <Typography variant="subtitle1">{type}</Typography>
@@ -28,7 +30,7 @@ const MovieCard: FC<IProps> = (props: IProps) => {
                 </Button>
             </CardActions>
         </Card>
-    </>)
+    </>);
 }
 
-export default MovieCard
+export default MovieCard;

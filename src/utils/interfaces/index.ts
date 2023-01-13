@@ -3,15 +3,15 @@ export interface IPoster {
     _id: string
 }
 export interface IMovie {
-    Title: string,
-    Year: string,
-    imdbID: string,
-    Type: string,
+    Title: string
+    Year: string
+    imdbID: string
+    Type: string
     Poster?: IPoster
 }
 
 export interface IFetchResponse {
-    movies: IMovie[],
+    movies: IMovie[]
 }
 
 export interface IFilter {

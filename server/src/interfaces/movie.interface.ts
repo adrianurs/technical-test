@@ -7,7 +7,6 @@ interface IMovie extends Document {
     imdbID: string,
     Type: string,
     Poster?: Types.ObjectId
-    
 }
 
 export default IMovie;

@@ -10,7 +10,7 @@ export const fetchURL = async (path: string) => {
         return data;
     } catch (err) {
         const error = err as AxiosError;
-        const errorData = error.response?.data || 'Failed fetching movies.'
+        const errorData = error.response?.data || 'Failed fetching movies.';
         return errorData;
     }
 }

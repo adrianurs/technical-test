@@ -8,8 +8,8 @@ import { IFetchResponse, IMovie } from '../../../utils/interfaces';
 
 interface IProps {
     loading: boolean
-    setMovies: (movies: IMovie[] | string) => void,
-    setLoading: (isLoading: boolean) => void,
+    setMovies: (movies: IMovie[] | string) => void
+    setLoading: (isLoading: boolean) => void
 }
 
 const ButtonsContainer: FC<IProps> = (props: IProps) => {
@@ -22,7 +22,7 @@ const ButtonsContainer: FC<IProps> = (props: IProps) => {
         const moviesData = typeof fetchData === 'string' ? fetchData : fetchData?.movies;
         setMovies(moviesData);
         setLoading(false);
-    }
+    };
 
     return (<>
         <Stack id={'fetch-buttons-container'} spacing={5} my={2} direction={{sm: 'column', md: 'row'}} justifyContent={'center'}>

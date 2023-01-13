@@ -3,12 +3,13 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mainRoutes from './routes/main.routes';
+import config from './config/config';
 
 const router = express();
-const port = 5050;
+
 // Connect to MongoDB
 mongoose
-    .connect('mongodb://127.0.0.1:27017/test', {
+    .connect(config.mongo.url, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     } as ConnectOptions)
@@ -42,6 +43,6 @@ router.use(bodyParser.json());
 //The route for api - the place from where app is starting
 router.use('/technical-test/api', mainRoutes);
 
-router.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+router.listen(config.server.port, () => {
+    console.log(`Server is listening on port ${config.server.port}`);
 });

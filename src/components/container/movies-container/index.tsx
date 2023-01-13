@@ -15,7 +15,7 @@ const MoviesContainer: FC<IProps> = (props: IProps) => {
 
     const { movies, loading } = props;
 
-    const [filter, setFilter] = useState<IFilter>({ title: 'A-Z', type: 'all' })
+    const [filter, setFilter] = useState<IFilter>({ title: 'A-Z', type: 'all' });
     const [numberOfItems, setNumberOfItems] = useState<number>(0); 
 
     const moviesRendered = useMemo(() => {
@@ -26,19 +26,19 @@ const MoviesContainer: FC<IProps> = (props: IProps) => {
                     ? (current_item.Title < next_item.Title ? -1
                         : current_item.Title > next_item.Title ? 1 : 0)
                     : filter.title === 'Z-A'
-                    ? (current_item.Title > next_item.Title ? -1
-                        : current_item.Title < next_item.Title ? 1 : 0)
+                        ? (current_item.Title > next_item.Title ? -1
+                            : current_item.Title < next_item.Title ? 1 : 0)
                         : filter.year === 'increase'
-                    ? (+current_item.Year < +next_item.Year ? -1
-                        : +current_item.Year > +next_item.Year ? 1 : 0)
-                        : filter.year === 'decrease'
-                    ? (+current_item.Year > +next_item.Year ? -1
-                        : +current_item.Year < +next_item.Year ? 1 : 0)
+                            ? (+current_item.Year < +next_item.Year ? -1
+                                : +current_item.Year > +next_item.Year ? 1 : 0)
+                            : filter.year === 'decrease'
+                                ? (+current_item.Year > +next_item.Year ? -1
+                                    : +current_item.Year < +next_item.Year ? 1 : 0)
                                 : 0
-            );
+                );
         setNumberOfItems(tempMoviesArray.length);
         return tempMoviesArray;
-    }, [movies, filter])
+    }, [movies, filter]);
 
     return (<>
         <Box display={'flex-column'} alignItems={'center'} mt={2}>
@@ -47,15 +47,13 @@ const MoviesContainer: FC<IProps> = (props: IProps) => {
                 loading ? <CircularProgress /> : typeof moviesRendered === 'string'
                     ? <Typography color={'red'}>{moviesRendered}</Typography>
                     : !moviesRendered?.length ? 'No movies fetched, please click one of the buttons above to fetch some' : <Slide in timeout={600} direction="up">
-                        <Box style={{width: '100%', height:'100%'}}>
-                            <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
-                                {moviesRendered?.map(({ Title, Poster, Year, Type, imdbID }) => <MovieCard key={imdbID} title={Title} poster={Poster?.Poster || ''} year={Year} type={Type} id={imdbID} />)}
-                            </Masonry>
-                        </Box>
+                        <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
+                            {moviesRendered?.map(({ Title, Poster, Year, Type, imdbID }) => <MovieCard key={imdbID} title={Title} poster={Poster?.Poster || ''} year={Year} type={Type} id={imdbID} />)}
+                        </Masonry>
                     </Slide>
             }
         </Box>
-    </>)
+    </>);
 }
 
 export default MoviesContainer;

@@ -19,11 +19,11 @@ const SelectMenu: FC<IProps> = (props: IProps) => {
     const handleClickSortByAlphaItem = (item: string) => {
         setCurrent(item);
         setMenuAnchor(null);
-    }
+    };
     
     return (<>
         {!!label && <Typography mx={2} color={theme.palette.common.white}>
-                {label}
+            {label}
         </Typography>}
         <Button id={`${name}-button`}
             onClick={(e) => setMenuAnchor(e.currentTarget)}
@@ -32,14 +32,14 @@ const SelectMenu: FC<IProps> = (props: IProps) => {
         <Menu id={`${name}-menu`}
             anchorEl={menuAnchor}
             open={!!menuAnchor}
-            onClose={()=>setMenuAnchor(null)}
+            onClose={() => setMenuAnchor(null)}
         >
             {menuItems.map(el => <MenuItem key={el} onClick={() => handleClickSortByAlphaItem(el)}>
-                    {el}
-                </MenuItem>
+                {el}
+            </MenuItem>
             )}
         </Menu>
-    </>)
+    </>);
 }
 
 export default SelectMenu;
