@@ -1,23 +1,23 @@
 interface IDataItem {
     name: string,
     label: string,
-    api: string
+    urlPath: string
 }
 
 export const data: IDataItem[] = [
     {
         name: 'matrix',
         label: 'Matrix',
-        api: 'Matrix'
+        urlPath: 'Matrix'
     },
     {
         name: 'matrix-reloaded',
         label: 'Reloaded',
-        api: 'Matrix%20Reloaded'
+        urlPath: 'Matrix%20Reloaded'
     },
     {
         name: 'matrix-revolution',
         label: 'Revolution',
-        api: 'Matrix%20Revolutions' 
+        urlPath: 'Matrix%20Revolutions' 
     }
 ] 

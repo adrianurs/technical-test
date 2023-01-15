@@ -16,9 +16,9 @@ const ButtonsContainer: FC<IProps> = (props: IProps) => {
 
     const { loading, setLoading, setMovies } = props;
 
-    const fetchMovies = async (api: string) => {
+    const fetchMovies = async (urlPath: string) => {
         setLoading(true);
-        const fetchData = await fetchURL(api) as IFetchResponse;
+        const fetchData = await fetchURL(urlPath) as IFetchResponse;
         const moviesData = typeof fetchData === 'string' ? fetchData : fetchData?.movies;
         setMovies(moviesData);
         setLoading(false);
@@ -26,7 +26,7 @@ const ButtonsContainer: FC<IProps> = (props: IProps) => {
 
     return (<>
         <Stack id={'fetch-buttons-container'} spacing={5} my={2} direction={{sm: 'column', md: 'row'}} justifyContent={'center'}>
-            {data?.map(({ api, ...props }) => <MyButton {...props} key={props.name} handleClick={() => fetchMovies(api)} disabled={loading} />)}
+            {data?.map(({ urlPath, ...props }) => <MyButton {...props} key={props.name} handleClick={() => fetchMovies(urlPath)} disabled={loading} />)}
         </Stack>
     </>);
 };

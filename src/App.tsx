@@ -1,11 +1,12 @@
-import './App.css';
+import { FC } from 'react';
 import Main from './pages/main';
+import { Box } from '@mui/material';
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
+    <Box textAlign={'center'}>
       <Main />
-    </div>
+    </Box>
   );
 }
 
