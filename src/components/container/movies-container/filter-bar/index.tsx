@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { IFilter } from "../../../../utils/interfaces";
+import { IFilter, alphaSort, typeFilter, yearSort } from "../../../../utils/interfaces";
 import { Box, Toolbar, Typography, useTheme } from "@mui/material";
 import SelectMenu from "../../../select-menu";
 import { useStyles } from "./index.styles";
+import { filterOptions } from "../../../../utils/costants";
 
 export interface IProps {
     filtersSelected: IFilter;
@@ -16,21 +17,21 @@ const FilterBar: FC<IProps> = (props: IProps) => {
     const { filtersSelected, setFilterSelected, numberOfItems } = props;
 
     const handleSelectSortByAlpha = (el: string) => {
-        const newFil = el as "A-Z" | "Z-A";
-        setFilterSelected({ type: filtersSelected?.type, title: newFil });
+        const newFil = el as alphaSort;
+        setFilterSelected({ type: filtersSelected?.type, titleSort: newFil });
     };
 
     const handleSelectSortByYear = (el: string) => {
-        const newFil = el as "increase" | "decrease";
-        setFilterSelected({ type: filtersSelected?.type, year: newFil });
+        const newFil = el as yearSort;
+        setFilterSelected({ type: filtersSelected?.type, yearSort: newFil });
     };
 
     const handleSelectSortByType = (el: string) => {
-        const newFil = el as "all" | "movie" | "game";
+        const newFil = el as typeFilter;
         setFilterSelected({
             type: newFil,
-            year: filtersSelected?.year,
-            title: filtersSelected?.title,
+            yearSort: filtersSelected?.yearSort,
+            titleSort: filtersSelected?.titleSort,
         });
     };
 
@@ -56,23 +57,23 @@ const FilterBar: FC<IProps> = (props: IProps) => {
                     <SelectMenu
                         name={"sort-by-alpha"}
                         label={"by alpha"}
-                        current={filtersSelected?.title || "----"}
+                        current={filtersSelected?.titleSort || "----"}
                         setCurrent={handleSelectSortByAlpha}
-                        menuItems={["A-Z", "Z-A"]}
+                        menuItems={[filterOptions.az, filterOptions.za]}
                     />
                     <SelectMenu
                         name={"sort-by-year"}
                         label={"by year"}
-                        current={filtersSelected?.year || "----------"}
+                        current={filtersSelected?.yearSort || "----------"}
                         setCurrent={handleSelectSortByYear}
-                        menuItems={["increase", "decrease"]}
+                        menuItems={[filterOptions.increase, filterOptions.decrease]}
                     />
                     <SelectMenu
                         name={"sort-by-type"}
                         label={"by type"}
                         current={filtersSelected?.type}
                         setCurrent={handleSelectSortByType}
-                        menuItems={["all", "movie", "game"]}
+                        menuItems={[filterOptions.all, filterOptions.movie, filterOptions.game]}
                     />
                 </Box>
                 <Typography color={theme.palette.common.white}>

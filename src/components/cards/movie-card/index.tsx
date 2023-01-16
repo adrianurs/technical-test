@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, Link, Typography } from "@mui/material";
 import { FC } from "react";
 import placeholder from '../../../assets/images/film-poster-placeholder.png';
 import { useStyles } from "./index.styles";
@@ -25,9 +25,9 @@ const MovieCard: FC<IProps> = (props: IProps) => {
                 <Typography variant="subtitle1">{year}</Typography>
             </CardContent>
             <CardActions>
-                <Button target={'_blank'} href={`https://www.imdb.com/title/${id}`}>
-                    Show in IMDB
-                </Button>
+                <Link target={'_blank'} underline="none" href={`https://www.imdb.com/title/${id}`}>
+                    <Typography variant="button">SHOW IN IMDB</Typography>
+                </Link>
             </CardActions>
         </Card>
     </>);

@@ -1,26 +1,26 @@
 import { FC, useMemo, useState } from "react";
-import { IMovie } from "../../../utils/interfaces";
+import { IMovie, alphaSort, yearSort } from "../../../utils/interfaces";
 import { Box, CircularProgress, Slide, Typography } from "@mui/material";
 import MovieCard from "../../cards/movie-card";
 import { Masonry } from "@mui/lab";
 import { IFilter } from "../../../utils/interfaces";
 import FilterBar from "./filter-bar";
-
+import { filterOptions } from "../../../utils/costants";
 interface IProps {
     movies: IMovie[] | string;
     loading: boolean;
 }
 
 const MoviesContainer: FC<IProps> = (props: IProps) => {
+    
     const { movies, loading } = props;
-
     const [filter, setFilter] = useState<IFilter>({
-        title: "A-Z",
-        type: "all",
+        titleSort: filterOptions.az,
+        type: filterOptions.all,
     });
     const [numberOfItems, setNumberOfItems] = useState<number>(0);
     
-    const sortBy = (sortFilter: string, current_item: IMovie, next_item: IMovie) => {
+    const sortBy = (sortFilter: alphaSort | yearSort, current_item: IMovie, next_item: IMovie) => {
         
         const currentTitle = current_item.Title;
         const nextTitle = next_item.Title;
@@ -28,25 +28,25 @@ const MoviesContainer: FC<IProps> = (props: IProps) => {
         const nextYear = +next_item.Year;  
         
         switch(sortFilter){
-            case 'A-Z':
+            case filterOptions.az:
                 return currentTitle < nextTitle
                 ? -1
                 : currentTitle > nextTitle
                 ? 1
                 : 0
-            case 'Z-A':
+            case filterOptions.za:
                 return currentTitle > nextTitle
                 ? -1
                 : currentTitle < nextTitle
                 ? 1
                 : 0
-            case 'increase': 
+            case filterOptions.increase: 
                 return currentYear < nextYear
                 ? -1
                 : currentYear > nextYear
                 ? 1
                 : 0
-            case 'decrease':
+            case filterOptions.decrease:
                 return currentYear > nextYear
                 ? -1
                 : currentYear < nextYear
@@ -63,20 +63,12 @@ const MoviesContainer: FC<IProps> = (props: IProps) => {
                 ? movies
                 : movies
                       .filter((el) =>
-                          filter.type === "all"
+                          filter.type === filterOptions.all
                               ? true
-                              : filter?.type === el?.Type
+                              : filter?.type === el?.Type?.toUpperCase()
                       )
                       .sort((current_item, next_item) =>
-                          filter.title === "A-Z"
-                              ? sortBy('A-Z', current_item, next_item)
-                              : filter.title === "Z-A"
-                              ? sortBy('Z-A', current_item, next_item)
-                              : filter.year === "increase"
-                              ? sortBy('increase', current_item, next_item)
-                              : filter.year === "decrease"
-                              ? sortBy('decrease', current_item, next_item)
-                              : 0
+                          sortBy(filter?.titleSort || filter?.yearSort || filterOptions.az, current_item, next_item)
                       );
         setNumberOfItems(tempMoviesArray.length);
         return tempMoviesArray;

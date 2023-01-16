@@ -14,8 +14,24 @@ export interface IFetchResponse {
     movies: IMovie[]
 }
 
+export type alphaSort = 'A-Z' | 'Z-A';
+
+export type yearSort = 'INCREASE' | 'DECREASE';
+
+export type typeFilter = 'GAME' | 'MOVIE' | 'ALL';
+
 export interface IFilter {
-    title?: 'A-Z' | 'Z-A'
-    year?: 'increase' | 'decrease'
-    type: 'game' | 'movie' | 'all'
+    titleSort?: alphaSort
+    yearSort?: yearSort
+    type: typeFilter
+}
+
+export interface IFilterOptions {
+    az: alphaSort,
+    za: alphaSort,
+    increase: yearSort,
+    decrease: yearSort,
+    movie: typeFilter,
+    game: typeFilter,
+    all: typeFilter
 }

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Stack } from '@mui/material';
-import MyButton from '../../button';
 import { data } from './data';
 import { fetchURL } from '../../../utils/api';
 import { IFetchResponse, IMovie } from '../../../utils/interfaces';
+import CustomButton from '../../button';
 
 
 interface IProps {
@@ -26,7 +26,7 @@ const ButtonsContainer: FC<IProps> = (props: IProps) => {
 
     return (<>
         <Stack id={'fetch-buttons-container'} spacing={5} my={2} direction={{sm: 'column', md: 'row'}} justifyContent={'center'}>
-            {data?.map(({ urlPath, ...props }) => <MyButton {...props} key={props.name} handleClick={() => fetchMovies(urlPath)} disabled={loading} />)}
+            {data?.map(({ urlPath, ...props }) => <CustomButton {...props} key={props.name} variant={'contained'} onClick={() => fetchMovies(urlPath)} disabled={loading} />)}
         </Stack>
     </>);
 };

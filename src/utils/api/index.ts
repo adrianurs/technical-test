@@ -1,16 +1,16 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { IFetchResponse } from "../interfaces"
 
-const baseURL = 'http://localhost:5050/technical-test/api/tests/movies/'
+const baseURL: string = 'http://localhost:5050/technical-test/api/tests/movies/';
 
-export const fetchURL = async (path: string) => {
+export const fetchURL = async (path: string): Promise<IFetchResponse | string>  => {
     try {
         const res = await axios.get(`${baseURL+path}`) as unknown as AxiosResponse;
         const data = res.data as IFetchResponse; 
         return data;
     } catch (err) {
         const error = err as AxiosError;
-        const errorData = error.response?.data || 'Failed fetching movies.';
+        const errorData = error.response?.data as string || 'Failed fetching movies.';
         return errorData;
     }
 }
