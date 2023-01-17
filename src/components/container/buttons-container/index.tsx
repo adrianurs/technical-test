@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Stack } from '@mui/material';
 import { data } from './data';
-import { fetchURL } from '../../../utils/api';
+import { fetchCollection } from '../../../utils/api';
 import { IFetchResponse, IMovie } from '../../../utils/interfaces';
 import CustomButton from '../../button';
 
@@ -18,14 +18,14 @@ const ButtonsContainer: FC<IProps> = (props: IProps) => {
 
     const fetchMovies = async (urlPath: string) => {
         setLoading(true);
-        const fetchData = await fetchURL(urlPath) as IFetchResponse;
+        const fetchData = await fetchCollection(urlPath) as IFetchResponse;
         const moviesData = typeof fetchData === 'string' ? fetchData : fetchData?.movies;
         setMovies(moviesData);
         setLoading(false);
     };
 
     return (<>
-        <Stack id={'fetch-buttons-container'} spacing={5} my={2} direction={{sm: 'column', md: 'row'}} justifyContent={'center'}>
+        <Stack id={'fetch-buttons-container'} spacing={{xs: 2,sm:5}} my={2} direction={{sm: 'column', md: 'row'}} alignItems={'center'} justifyContent={'center'}>
             {data?.map(({ urlPath, ...props }) => <CustomButton {...props} key={props.name} variant={'contained'} onClick={() => fetchMovies(urlPath)} disabled={loading} />)}
         </Stack>
     </>);

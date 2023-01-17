@@ -1,5 +1,7 @@
 import { IFilterOptions } from "../interfaces";
 
+//Use the below object to access any filter option to start using it
+
 export const filterOptions: IFilterOptions = {
     //alphaSort options
     az: 'A-Z',

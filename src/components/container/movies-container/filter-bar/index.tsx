@@ -2,7 +2,6 @@ import { FC } from "react";
 import { IFilter, alphaSort, typeFilter, yearSort } from "../../../../utils/interfaces";
 import { Box, Toolbar, Typography, useTheme } from "@mui/material";
 import SelectMenu from "../../../select-menu";
-import { useStyles } from "./index.styles";
 import { filterOptions } from "../../../../utils/costants";
 
 export interface IProps {
@@ -13,7 +12,6 @@ export interface IProps {
 
 const FilterBar: FC<IProps> = (props: IProps) => {
     const theme = useTheme();
-    const styles = useStyles();
     const { filtersSelected, setFilterSelected, numberOfItems } = props;
 
     const handleSelectSortByAlpha = (el: string) => {
@@ -42,13 +40,14 @@ const FilterBar: FC<IProps> = (props: IProps) => {
                     backgroundColor: theme.palette.primary.main,
                     boxShadow: theme.shadows[3],
                     borderRadius: theme.shape.borderRadius,
+                    marginBottom: 2
                 }}
-                variant="dense"
-                className={styles.toolbarStyle}
             >
                 <Box
                     display={"flex"}
-                    justifyContent={"space-between"}
+                    width={"100%"}
+                    flexDirection={{xs: 'column', md: 'row'}}
+                    justifyContent={"center"}
                     alignItems={"center"}
                 >
                     <Typography color={theme.palette.common.white}>
@@ -75,10 +74,10 @@ const FilterBar: FC<IProps> = (props: IProps) => {
                         setCurrent={handleSelectSortByType}
                         menuItems={[filterOptions.all, filterOptions.movie, filterOptions.game]}
                     />
+                    <Typography color={theme.palette.common.white} pl={{xs: 0, sm: 2}}>
+                        {numberOfItems} items
+                    </Typography>
                 </Box>
-                <Typography color={theme.palette.common.white}>
-                    {numberOfItems} items
-                </Typography>
             </Toolbar>
         </>
     );

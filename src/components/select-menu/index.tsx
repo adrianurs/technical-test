@@ -1,6 +1,7 @@
-import { Button, Menu, MenuItem, Typography, useTheme } from "@mui/material"
+import { Menu, MenuItem, Typography, useTheme } from "@mui/material"
 import { FC, useState } from "react"
 import { ExpandMore } from "@mui/icons-material"
+import CustomButton from "../button"
 
 interface IProps {
     name: string
@@ -25,10 +26,12 @@ const SelectMenu: FC<IProps> = (props: IProps) => {
         {!!label && <Typography mx={2} color={theme.palette.common.white}>
             {label}
         </Typography>}
-        <Button id={`${name}-button`}
+        <CustomButton name={`${name}-button`}
             onClick={(e) => setMenuAnchor(e.currentTarget)}
             variant='contained'
-        >{current || '----'} <ExpandMore /></Button>
+            label={<>{current || '----'}<ExpandMore /></>}
+            width={200}
+        />
         <Menu id={`${name}-menu`}
             anchorEl={menuAnchor}
             open={!!menuAnchor}

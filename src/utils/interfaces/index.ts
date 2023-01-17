@@ -1,3 +1,9 @@
+/*
+ * Interfaces & types that were used more than one time 
+ * The interface of each component props can be found above the respective component 
+ */
+
+
 export interface IPoster {
     Poster: string
     _id: string

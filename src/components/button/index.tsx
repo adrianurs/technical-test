@@ -1,10 +1,10 @@
 import { Button, ButtonProps } from "@mui/material";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 interface IProps {
     name: string
-    label: string
-    width?: number
+    label: string | ReactNode
+    width?: number | string
 }
 
 const CustomButton: FC<IProps & ButtonProps>  = (props: IProps & ButtonProps) => {
