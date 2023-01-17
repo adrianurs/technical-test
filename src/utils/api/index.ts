@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { IFetchResponse } from "../interfaces"
 
-//Put here the server url
+// Put here the server url
 const baseURL: string = 'http://localhost:5050/technical-test/api/tests/movies/';
 
 /* Use the next function to fetch any of the three matrix collections

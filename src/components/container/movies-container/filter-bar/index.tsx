@@ -58,7 +58,7 @@ const FilterBar: FC<IProps> = (props: IProps) => {
                         label={"by alpha"}
                         current={filtersSelected?.titleSort || "----"}
                         setCurrent={handleSelectSortByAlpha}
-                        menuItems={[filterOptions.az, filterOptions.za]}
+                        menuItems={[filterOptions.ascendant, filterOptions.descendant]}
                     />
                     <SelectMenu
                         name={"sort-by-year"}

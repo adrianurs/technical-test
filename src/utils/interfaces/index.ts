@@ -33,8 +33,8 @@ export interface IFilter {
 }
 
 export interface IFilterOptions {
-    az: alphaSort,
-    za: alphaSort,
+    ascendant: alphaSort,
+    descendant: alphaSort,
     increase: yearSort,
     decrease: yearSort,
     movie: typeFilter,
